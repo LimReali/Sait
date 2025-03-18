@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Расписание занятий</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Расписание занятий университета</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="#" class="tab" data-tab="group">Основное расписание</a></li>
+            <li><a href="#" class="tab" data-tab="teacher">По преподавателям</a></li>
+            <li><a href="#" class="tab" data-tab="room">По кабинетам</a></li>
+            <li><a href="#" class="tab" data-tab="edit">Изменить расписание</a></li>
+            <li><a href="#" class="tab" data-tab="editRoom">Изменить расписание (кабинет)</a></li>
+            <li><a href="#" class="tab" data-tab="editTable">Редактировать всю таблицу</a></li>
+        </ul>
+    </nav>
+    <main>
+
+        <!-- Изменение расписания -->
+        <section id="editSchedule" class="tab-content">
+            <h2>Изменить расписание</h2>
+
+            <!-- Форма для добавления нового занятия -->
+            <form id="editForm">
+                <label for="time">Время:</label><br />
+                <select id="time" name="time">
+                    <option value="">Выберите время</option>
+                    <option value="08:20 - 09:55">08:20 - 09:55</option>
+                    <option value="10:05 - 11:40">10:05 - 11:40</option>
+                    <option value="12:05 - 13:40">12:05 - 13:40</option>
+                    <option value="13:55 - 15:30">13:55 - 15:30</option>
+                    <option value="15:40 - 17:15">15:40 - 17:15</option>
+                    <option value="17:25 - 19:00">17:25 - 19:00</option>
+                    <option value="19:10 - 20:45">19:10 - 20:45</option>
+                </select><br />
+
+                <label for="subject">Предмет:</label><br />
+                <input type="text" id="subject" name="subject"><br />
+
+                <label for="group">Группа:</label><br />
+                <input type="text" id="group" name="group"><br />
+
+                <label for="teacher">Преподаватель:</label><br />
+                <input type="text" id="teacher" name="teacher"><br />
+
+                <label for="room">Кабинет:</label><br />
+                <input type="text" id="room" name="room"><br />
+
+                <label for="day">День недели:</label><br />
+                <select id="day" name="day">
+                    <option value="">Выберите день</option>
+                    <option value="Понедельник">Понедельник</option>
+                    <option value="Вторник">Вторник</option>
+                    <option value="Среда">Среда</option>
+                    <option value="Четверг">Четверг</option>
+                    <option value="Пятница">Пятница</option>
+                    <option value="Суббота">Суббота</option>
+                    <option value="Воскресенье">Воскресенье</option>
+                </select><br />
+
+                <!-- Кнопка для добавления -->
+                <button type="button" id="addScheduleButton">Добавить в расписание</button>
+
+            </form>
+
+        </section>
+
+        <!-- Расписание по дням недели -->
+        <section id="groupSchedule" class="tab-content active">
+            <h2>Расписание по дням недели</h2>
+            <table id="scheduleTable">
+                <thead>
+                    <tr>
+                        <th>Время</th>
+                        <th>Понедельник</th>
+                        <th>Вторник</th>
+                        <th>Среда</th>
+                        <th>Четверг</th>
+                        <th>Пятница</th>
+                        <th>Суббота</th>
+                        <th>Воскресенье</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </section>
+
+        <!-- Расписание по кабинетам -->
+        <section id="roomSchedule" class="tab-content">
+            <h2>Расписание по кабинетам</h2>
+            <label for="roomSelect">Выберите кабинет:</label>
+            <select id="roomSelect">
+                <option value="">Все кабинеты</option>
+            </select>
+            <table id="roomTable">
+                <thead>
+                    <tr>
+                        <th>Время</th>
+                        <th>Понедельник</th>
+                        <th>Вторник</th>
+                        <th>Среда</th>
+                        <th>Четверг</th>
+                        <th>Пятница</th>
+                        <th>Суббота</th>
+                        <th>Воскресенье</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </section>
+
+        <!-- Изменить расписание (кабинет) -->
+        <section id="editRoomSchedule" class="tab-content">
+            <h2>Изменить расписание (кабинет)</h2>
+            <label for="editRoomSelect">Выберите кабинет:</label>
+            <select id="editRoomSelect">
+                <option value="">Все кабинеты</option>
+            </select>
+            <table id="editRoomEditTable">
+                <thead>
+                    <tr>
+                        <th>Время</th>
+                        <th>Понедельник</th>
+                        <th>Вторник</th>
+                        <th>Среда</th>
+                        <th>Четверг</th>
+                        <th>Пятница</th>
+                        <th>Суббота</th>
+                        <th>Воскресенье</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+
+            <!-- Кнопка для сохранения изменений -->
+            <button type="button" id="saveRoomChangesButton">Сохранить изменения</button>
+
+        </section>
+
+        <!-- Редактирование всей таблицы -->
+        <section id="editTableSchedule" class="tab-content">
+            <h2>Редактировать всю таблицу</h2>
+            <table id="editTable">
+                <thead>
+                    <tr>
+                        <th>Время</th>
+                        <th>Понедельник</th>
+                        <th>Вторник</th>
+                        <th>Среда</th>
+                        <th>Четверг</th>
+                        <th>Пятница</th>
+                        <th>Суббота</th>
+                        <th>Воскресенье</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+
+            <!-- Кнопка для сохранения изменений -->
+            <button type="button" id="saveChangesButton">Сохранить изменения</button>
+
+        </section>
+
+        <!-- Расписание по преподавателям -->
+<section id="teacherSchedule" class="tab-content">
+    <h2>Расписание по преподавателям</h2>
+
+    <!-- Поле поиска для преподавателей -->
+    <div class="search-container">
+        <input type="text" id="teacherSearch" placeholder="Поиск преподавателя...">
+    </div>
+
+    <!-- Таблица для отображения расписания по преподавателям -->
+    <table id="teacherTable">
+        <thead>
+            <tr>
+                <th>Преподаватель</th>
+                <th>Время</th>
+                <th>День недели</th>
+                <th>Группа</th>
+                <th>Кабинет</th>
+                <th>Предмет</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+</section>
+
+    </main>
+
+    <!-- Подключение JavaScript -->
+    <script src="script.js"></script>
+
+</body>
+</html>
